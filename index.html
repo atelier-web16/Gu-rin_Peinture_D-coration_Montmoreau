@@ -1,124 +1,263 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>David Guérin | Peinture & Décoration Montmoreau</title>
-    <style>
-        :root {
-            --primary: #2980b9;
-            --dark: #2c3e50;
-            --light: #f8f9fa;
-        }
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: system-ui, -apple-system, sans-serif;
-        }
-        body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        header {
-            background-color: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 2.5rem 1rem;
-            border-bottom: 4px solid var(--primary);
-        }
-        header h1 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-        header p {
-            font-size: 0.95rem;
-            color: #bdc3c7;
-        }
-        .container {
-            padding: 1.5rem 1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .card {
-            background: white;
-            padding: 1.25rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        .card h2 {
-            font-size: 1.15rem;
-            color: var(--primary);
-            margin-bottom: 0.75rem;
-        }
-        ul {
-            list-style-type: none;
-        }
-        ul li {
-            padding: 0.4rem 0;
-            border-bottom: 1px solid #eee;
-        }
-        ul li:last-child {
-            border-bottom: none;
-        }
-        .cta-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: white;
-            padding: 0.75rem 1rem;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        .btn {
-            display: block;
-            background-color: var(--primary);
-            color: white;
-            text-decoration: none;
-            padding: 0.85rem;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-        .spacer {
-            height: 80px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>David Guérin | Peinture & Décoration Montmoreau</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EDEAE1;
+    --surface:#FFFFFF;
+    --ink:#20303A;
+    --ink-soft:#5B6A71;
+    --line:#D8D2C4;
+    --accent:#1F5C73;
+    --accent-soft:#DCE7EA;
+    --gold:#B98A3D;
+    --wood:#A9835F;
+    --radius:10px;
+    --wall-color:#1F5C73;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Public Sans',system-ui,-apple-system,sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces',Georgia,serif;
+    font-weight:600;
+    color:var(--ink);
+    line-height:1.15;
+  }
+  a{color:inherit;}
+  .brand-strip{display:flex;height:6px;}
+  .brand-strip span{flex:1;}
+  .topbar{
+    position:sticky;top:0;z-index:20;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:.9rem 1.25rem;
+    background:rgba(237,234,225,.86);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar .brand{
+    font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;
+  }
+  .topbar .call{
+    font-size:.9rem;font-weight:600;color:var(--accent);
+    text-decoration:none;white-space:nowrap;
+  }
+  main{max-width:640px;margin:0 auto;padding:0 1.25rem;}
+  section{padding:2.75rem 0;border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .hero{padding-top:2.5rem;}
+  .hero-copy > *{animation:riseIn .6s ease both;}
+  .hero-copy h1{animation-delay:.05s;font-size:1.9rem;max-width:19ch;}
+  .hero-copy .lead{animation-delay:.15s;margin-top:.85rem;color:var(--ink-soft);font-size:1.02rem;max-width:38ch;}
+  .hero-ctas{animation-delay:.25s;display:flex;gap:.7rem;margin-top:1.5rem;flex-wrap:wrap;}
+  @keyframes riseIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+  @media (prefers-reduced-motion:reduce){.hero-copy > *{animation:none;}}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:.8rem 1.3rem;border-radius:999px;font-weight:600;font-size:.95rem;
+    text-decoration:none;border:1px solid transparent;transition:transform .15s ease;
+  }
+  .btn:active{transform:scale(.97);}
+  .btn-primary{background:var(--accent);color:#fff;}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line);}
+
+  .wall-demo{margin-top:2.25rem;}
+  .wall-demo-label{font-size:.9rem;color:var(--ink-soft);margin-bottom:.6rem;}
+  .wall-svg{width:100%;height:auto;border-radius:var(--radius);display:block;}
+  .wall-fill{fill:var(--wall-color);transition:fill .4s ease;}
+  .swatches{display:flex;gap:.55rem;margin-top:.9rem;flex-wrap:wrap;}
+  .swatch{
+    width:34px;height:34px;border-radius:50%;border:2px solid var(--surface);
+    background:var(--c);cursor:pointer;box-shadow:0 0 0 1px var(--line);
+    padding:0;transition:box-shadow .15s ease;
+  }
+  .swatch.is-active{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--ink);}
+  .swatch:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  .wall-demo-current{margin-top:.7rem;font-size:.9rem;color:var(--ink-soft);}
+  .wall-demo-current span{color:var(--ink);font-weight:600;}
+
+  h2{font-size:1.35rem;margin-bottom:1.1rem;}
+  .services{display:flex;flex-direction:column;}
+  .service{display:flex;gap:.9rem;padding:.95rem 0;border-bottom:1px solid var(--line);}
+  .service:last-child{border-bottom:none;}
+  .dot{width:13px;height:13px;border-radius:50%;background:var(--c);margin-top:.4rem;flex-shrink:0;}
+  .service h3{font-family:'Public Sans',sans-serif;font-weight:600;font-size:1rem;}
+  .service p{color:var(--ink-soft);font-size:.92rem;margin-top:.15rem;}
+
+  .muted{color:var(--ink-soft);font-size:.92rem;margin-bottom:1.1rem;}
+  .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;}
+  .gallery-slot{
+    aspect-ratio:4/3;border:2px dashed var(--line);border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--ink-soft);font-size:.8rem;text-align:center;
+  }
+
+  details{border-bottom:1px solid var(--line);padding:.85rem 0;}
+  details:last-child{border-bottom:none;}
+  summary{
+    cursor:pointer;font-weight:600;font-size:.98rem;list-style:none;
+    display:flex;justify-content:space-between;align-items:center;gap:1rem;
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary::after{content:'+';font-size:1.3rem;color:var(--accent);font-weight:400;}
+  details[open] summary::after{content:'–';}
+  details p{margin-top:.7rem;color:var(--ink-soft);font-size:.92rem;}
+
+  .contact p{margin-bottom:.4rem;font-size:.95rem;}
+  .contact .label{color:var(--ink-soft);}
+  .contact .zone{margin-top:.6rem;font-size:.88rem;color:var(--ink-soft);}
+
+  .spacer{height:88px;}
+  .cta-bar{
+    position:fixed;bottom:0;left:0;width:100%;
+    background:var(--surface);padding:.75rem 1.1rem;
+    box-shadow:0 -2px 14px rgba(32,48,58,.12);
+    display:flex;gap:.6rem;align-items:center;
+  }
+  .cta-bar .btn-primary{flex:1;}
+  .cta-bar .sms{
+    font-size:.85rem;color:var(--ink-soft);text-decoration:none;white-space:nowrap;
+  }
+</style>
 </head>
 <body>
 
-    <header>
-        <h1>David Guérin</h1>
-        <p>Peinture Intérieure & Extérieure • Rénovation à Montmoreau</p>
-    </header>
+  <div class="brand-strip">
+    <span style="background:#1F5C73"></span>
+    <span style="background:#7C8B6F"></span>
+    <span style="background:#B98A3D"></span>
+    <span style="background:#8C7B6A"></span>
+    <span style="background:#B5623D"></span>
+  </div>
 
-    <div class="container">
-        <div class="card">
-            <h2>🎨 Nos Prestations</h2>
-            <ul>
-                <li>🖌️ Peinture murs, plafonds & boiseries</li>
-                <li>🏠 Ravalement de façade & extérieurs</li>
-                <li>📜 Pose de papiers peints & revêtements</li>
-                <li>✨ Finitions soignées & conseils déco</li>
-            </ul>
+  <div class="topbar">
+    <span class="brand">David Guérin</span>
+    <a href="tel:0631072928" class="call">06 31 07 29 28</a>
+  </div>
+
+  <main>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <h1>Vos murs méritent un vrai savoir-faire.</h1>
+        <p class="lead">Peinture intérieure, extérieure et rénovation à Montmoreau et ses alentours. Devis gratuit, sans engagement.</p>
+        <div class="hero-ctas">
+          <a href="#prestations" class="btn btn-primary">Voir les prestations</a>
         </div>
+      </div>
 
-        <div class="card">
-            <h2>📍 Coordonnées & Secteur</h2>
-            <p><strong>Adresse :</strong> 47 Avenue de l'Angoumois, 16190 Montmoreau</p>
-            <p><strong>Téléphone :</strong> 06 31 07 29 28</p>
-            <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #666;">Intervention rapide sur Montmoreau et ses alentours pour tous vos projets de rénovation.</p>
+      <div class="wall-demo">
+        <p class="wall-demo-label">Essayez une couleur sur ce mur</p>
+        <svg viewBox="0 0 400 260" class="wall-svg" role="img" aria-label="Aperçu d'un mur peint dont la couleur peut être changée">
+          <rect x="0" y="0" width="400" height="200" class="wall-fill" id="wallFill"></rect>
+          <rect x="0" y="200" width="400" height="60" fill="var(--wood)"></rect>
+          <rect x="250" y="30" width="100" height="110" fill="#EAF3F7" stroke="#20303A" stroke-width="3"></rect>
+          <line x1="300" y1="30" x2="300" y2="140" stroke="#20303A" stroke-width="3"></line>
+          <line x1="250" y1="85" x2="350" y2="85" stroke="#20303A" stroke-width="3"></line>
+          <rect x="40" y="50" width="65" height="85" fill="#fff" stroke="#20303A" stroke-width="3"></rect>
+          <rect x="49" y="59" width="47" height="58" fill="#DDE7E2"></rect>
+        </svg>
+        <div class="swatches" role="group" aria-label="Choix de couleur de peinture">
+          <button class="swatch" style="--c:#F5F1E8" data-name="Blanc craie" aria-label="Blanc craie"></button>
+          <button class="swatch" style="--c:#B9BEC0" data-name="Gris perle" aria-label="Gris perle"></button>
+          <button class="swatch is-active" style="--c:#1F5C73" data-name="Bleu paon" aria-label="Bleu paon"></button>
+          <button class="swatch" style="--c:#7C8B6F" data-name="Vert sauge" aria-label="Vert sauge"></button>
+          <button class="swatch" style="--c:#8C7B6A" data-name="Taupe" aria-label="Taupe"></button>
+          <button class="swatch" style="--c:#B5623D" data-name="Terracotta" aria-label="Terracotta"></button>
         </div>
-    </div>
+        <p class="wall-demo-current">Couleur actuelle : <span id="colorName">Bleu paon</span></p>
+      </div>
+    </section>
 
-    <div class="spacer"></div>
+    <section class="prestations" id="prestations">
+      <h2>Nos prestations</h2>
+      <div class="services">
+        <div class="service">
+          <span class="dot" style="--c:#1F5C73"></span>
+          <div><h3>Peinture intérieure</h3><p>Murs, plafonds, boiseries — finitions soignées.</p></div>
+        </div>
+        <div class="service">
+          <span class="dot" style="--c:#8C7B6A"></span>
+          <div><h3>Ravalement de façade</h3><p>Rénovation et protection de vos extérieurs.</p></div>
+        </div>
+        <div class="service">
+          <span class="dot" style="--c:#7C8B6F"></span>
+          <div><h3>Papiers peints & revêtements</h3><p>Pose précise, tous supports.</p></div>
+        </div>
+        <div class="service">
+          <span class="dot" style="--c:#B5623D"></span>
+          <div><h3>Conseil déco & couleurs</h3><p>Un accompagnement pour bien choisir.</p></div>
+        </div>
+      </div>
+    </section>
 
-    <div class="cta-container">
-        <a href="tel:0631072928" class="btn">📞 Demander un devis / Appeler</a>
-    </div>
+    <section class="gallery" id="chantiers">
+      <h2>Nos chantiers</h2>
+      <p class="muted">Vos photos de réalisations viendront remplacer ces emplacements.</p>
+      <div class="gallery-grid">
+        <div class="gallery-slot">+ Photo</div>
+        <div class="gallery-slot">+ Photo</div>
+        <div class="gallery-slot">+ Photo</div>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <h2>Questions fréquentes</h2>
+      <details>
+        <summary>Le devis est-il vraiment gratuit ?</summary>
+        <p>Oui, sans engagement. [David : confirmer le délai de réponse habituel.]</p>
+      </details>
+      <details>
+        <summary>Quel est le délai d'intervention ?</summary>
+        <p>[David : à préciser — ex. sous 1 à 2 semaines selon la saison.]</p>
+      </details>
+      <details>
+        <summary>Quelle est la zone d'intervention ?</summary>
+        <p>Montmoreau et ses alentours. [David : préciser le rayon en km si besoin.]</p>
+      </details>
+    </section>
+
+    <section class="contact" id="contact">
+      <h2>Coordonnées</h2>
+      <p><span class="label">Adresse : </span>47 Avenue de l'Angoumois, 16190 Montmoreau</p>
+      <p><span class="label">Téléphone : </span>06 31 07 29 28</p>
+      <p class="zone">Intervention à Montmoreau et alentours pour tous vos projets de rénovation.</p>
+    </section>
+
+  </main>
+
+  <div class="spacer"></div>
+  <div class="cta-bar">
+    <a href="tel:0631072928" class="btn btn-primary">📞 Appeler pour un devis</a>
+    <a href="sms:0631072928?body=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20des%20travaux%20de%20peinture." class="sms">SMS</a>
+  </div>
+
+<script>
+  const wallFill = document.getElementById('wallFill');
+  const colorName = document.getElementById('colorName');
+  document.querySelectorAll('.swatch').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      const c = btn.style.getPropertyValue('--c');
+      wallFill.style.setProperty('fill', c);
+      colorName.textContent = btn.dataset.name;
+      document.querySelectorAll('.swatch').forEach(function(s){ s.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+    });
+  });
+</script>
 
 </body>
 </html>
